@@ -21,7 +21,7 @@ CFLAGS+=-Wall -Werror -Wstrict-prototypes -Wmissing-prototypes
 CFLAGS+=-Wmissing-declarations -Wshadow -Wpointer-arith -Wcast-qual
 CFLAGS+=-Wsign-compare -Iincludes -std=c99 -pedantic
 CFLAGS+=-DPREFIX='"$(PREFIX)"'
-LDFLAGS=-rdynamic -lssl -lcrypto
+#LDFLAGS=-rdynamic -lssl -lcrypto
 
 ifneq ("$(KORE_SINGLE_BINARY)", "")
 	CFLAGS+=-DKORE_SINGLE_BINARY
@@ -54,7 +54,7 @@ ifneq ("$(NOTLS)", "")
 	ifneq ("$(NOHTTP)", "")
 		LDFLAGS=-rdynamic
 	else
-		LDFLAGS=-rdynamic -lcrypto
+#		LDFLAGS=-rdynamic -lcrypto
 	endif
 endif
 

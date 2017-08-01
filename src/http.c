@@ -770,20 +770,23 @@ http_header_recv(struct netbuf *nb)
 			http_error_response(req->owner, 405);
 			return (KORE_RESULT_OK);
 		}
-
 		if (!http_request_header(req, "content-length", &p)) {
+#if 0
 			kore_debug("expected body but no content-length");
 			req->flags |= HTTP_REQUEST_DELETE;
 			http_error_response(req->owner, 411);
 			return (KORE_RESULT_OK);
+#endif
 		}
 
 		req->content_length = kore_strtonum(p, 10, 0, LONG_MAX, &v);
 		if (v == KORE_RESULT_ERROR) {
+#if 0
 			kore_debug("content-length invalid: %s", p);
 			req->flags |= HTTP_REQUEST_DELETE;
 			http_error_response(req->owner, 411);
 			return (KORE_RESULT_OK);
+#endif
 		}
 
 		if (req->content_length == 0) {
